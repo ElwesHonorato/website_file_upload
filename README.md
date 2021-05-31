@@ -1,2 +1,0 @@
-# Repository
-by: Elwes Honorato
