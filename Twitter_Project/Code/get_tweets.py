@@ -26,5 +26,5 @@ if __name__ == '__main__':
     'id'   : ids_list,
     'text' : tweets_list
         })
-    df_response.to_csv(f'collected_tweets_{today_date}.csv')
+    df_response.to_csv(f'./raw_data/collected_tweets_{today_date}.csv')
     
