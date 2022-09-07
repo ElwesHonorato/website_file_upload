@@ -6,8 +6,8 @@ from werkzeug.utils import secure_filename
 
 
 
-ACCESS_KEY_ID     = 'AKIASGL7P5QENRGQ6MFC'
-ACCESS_SECRET_KEY = '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'
+ACCESS_KEY_ID     = ''
+ACCESS_SECRET_KEY = ''
 
 s3 = boto3.client('s3',
                     aws_access_key_id     = ACCESS_KEY_ID,
