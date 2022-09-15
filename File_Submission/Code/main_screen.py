@@ -5,15 +5,7 @@ from werkzeug.utils import secure_filename
 # import key_config as keys
 
 
-
-ACCESS_KEY_ID     = ''
-ACCESS_SECRET_KEY = ''
-
-s3 = boto3.client('s3',
-                    aws_access_key_id     = ACCESS_KEY_ID,
-                    aws_secret_access_key = ACCESS_SECRET_KEY
-                     )
-
+s3 = boto3.client('s3')
 BUCKET_NAME='mbaprojectbronze'
 
 
@@ -40,5 +32,4 @@ def upload():
 
 
 if __name__ == "__main__":
-    
     app.run(debug=True)
