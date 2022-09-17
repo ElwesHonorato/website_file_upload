@@ -43,9 +43,9 @@ variable "vpc_fs" {
 
 
 #### EC2
-variable "ec2_backend_ami" {
+variable "ec2_back_end_ami" {
   default = "ami-052efd3df9dad4825"
 }
-variable "ec2_backend_type" {
+variable "ec2_back_end_type" {
   default = "t2.micro"
 }

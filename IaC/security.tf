@@ -1,4 +1,4 @@
-variable "security_group_ec2_backend" {
+variable "security_group_ec2_back_end" {
   default = "sg-0dfc595b422726074"
 }
 
