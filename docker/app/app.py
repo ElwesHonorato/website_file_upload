@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import boto3
 app = Flask(__name__)
 from werkzeug.utils import secure_filename
+import gunicorn
 # import key_config as keys
 
 
@@ -31,3 +32,4 @@ def upload():
 
 if __name__ == "__main__":
     app.run(debug=True)
+    # app.run(host='0.0.0.0')
