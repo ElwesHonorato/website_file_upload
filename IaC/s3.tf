@@ -1,4 +1,3 @@
-
 resource "aws_s3_bucket" "dev_bucket_bronze" {
   bucket = "${var.project}-${var.dev_environment}-${var.bucket_bronze}"
 
