@@ -15,11 +15,12 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 EXPOSE 80
 
 #### MOVE FILES FROM YOUR WORKING DIRECTORY [ACTUAL_FOLDER]/APP TO DOCKER DIRETORY [ROOT]/APP
-COPY ./app /app
+COPY .. /app
 
 
 RUN pip install -r /app/requirements.txt
 
 WORKDIR /app
-CMD [ "gunicorn", "--bind" , "0.0.0.0", ":", "8000", "app:app"]
+CMD gunicorn --bind 0.0.0.0:8000 wsgi:app
+# CMD [ "gunicorn", "--bind" , "0.0.0.0", ":", "8000", "app:app"] 
 # CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
