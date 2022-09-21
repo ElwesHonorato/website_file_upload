@@ -37,7 +37,7 @@ jobs:
 
       - uses: isbang/compose-action@v1.2.0
         with:
-          compose-file: "../docker/app/docker-compose.yml"
+          compose-file: ./docker/app/docker-compose.yml
           services: |
             app
             nginx
