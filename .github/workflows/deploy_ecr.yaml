@@ -33,11 +33,6 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: fs000-images_repository
         IMAGE_TAG: latest
-      uses: isbang/compose-action@v1.2.0
-      with:
-        compose-file: ./docker/app/docker-compose.yml
-        services: |
-          app
-          nginx
-      # run: 
-      #   docker push $ECR_REGISTRY/app_nginx_1 :$IMAGE_TAG
+      run: 
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
