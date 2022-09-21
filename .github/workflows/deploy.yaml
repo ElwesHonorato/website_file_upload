@@ -47,6 +47,6 @@ jobs:
         #   IMAGE_TAG: ${{ github.sha }}
         run: |
           ls
-          docker-compose up -d
-          docker push file_submission_input:latest
+        # docker-compose up -d
+        # docker push file_submission_input:latest
      
