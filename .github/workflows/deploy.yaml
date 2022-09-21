@@ -1,4 +1,4 @@
-name: Deploy IaC
+name: Deploy
 
 on:
   push:
@@ -32,4 +32,13 @@ jobs:
           $COMMAND_IAC validate
           $COMMAND_IAC plan
           $COMMAND_IAC apply -auto-approve
+
+      - uses: actions/checkout@v2
+
+      - uses: isbang/compose-action@v1.2.0
+        with:
+          compose-file: "../docker/app/docker-compose.yml"
+          services: |
+            app
+            nginx
   
