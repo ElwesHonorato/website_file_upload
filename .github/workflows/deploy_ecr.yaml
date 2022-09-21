@@ -39,5 +39,5 @@ jobs:
         services: |
           app
           nginx
-      run: 
-        docker push $ECR_REGISTRY/app_nginx_1 :$IMAGE_TAG
+      # run: 
+      #   docker push $ECR_REGISTRY/app_nginx_1 :$IMAGE_TAG
