@@ -4,6 +4,7 @@ services:
   app:
     build:
       context: . #Current Folder
+    image: file_submission_input
     ports:
       - "8000"
   
