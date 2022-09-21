@@ -1,8 +1,9 @@
-name: Deploy
+name: Deploy IaC
 
 on:
   push:
     branches: [master]
+         
 
 jobs:
   deploy:
@@ -33,12 +34,18 @@ jobs:
           $COMMAND_IAC plan
           $COMMAND_IAC apply -auto-approve
 
-      - uses: actions/checkout@v2
+      # - uses: actions/checkout@v2
 
-      - uses: isbang/compose-action@v1.2.0
-        with:
-          compose-file: ./docker/app/docker-compose.yml
-          services: |
-            app
-            nginx
+      # - uses: isbang/compose-action@v1.2.0
+      #   with:
+      #     compose-file: ./docker/app/docker-compose.yml
+      #     services: |
+      #       app
+      #       nginx
+      #   env:
+      #     AWS_REGION: us-east-2                   # set this to your preferred AWS region, e.g. us-west-1
+      #     ECR_REPOSITORY: fs000-images_repository     # set this to your Amazon ECR repository name
+      #     CONTAINER_NAME: file_submission_input  
+      #   run:
+      #     docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
   
