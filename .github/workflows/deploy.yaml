@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy IaC
 
 on:
   push:
@@ -32,33 +32,4 @@ jobs:
           $COMMAND_IAC validate
           $COMMAND_IAC plan
           $COMMAND_IAC apply -auto-approve
-    
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
-
-      # - name: Checkout
-      #   uses: actions/checkout@v3
-
-
-      # - name: Docker Compose Up
-      #   with:
-      #     compose-file: ../docker/app/docker-compose.yml
-      #   env:
-      #     pythonLocation: /opt/hostedtoolcache/Python/3.10.6/x64
-      #     LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.6/x64/lib
-      #     AWS_DEFAULT_REGION: us-east-2
-      #     AWS_REGION: us-east-2
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_TERRAFORM }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_TERRAFORM }}
-
-      # - name: Build, tag, and push image to Amazon ECR
-      #   # env:
-      #   #   ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-      #   #   ECR_REPOSITORY: your-ecr-repot
-      #   #   IMAGE_TAG: ${{ github.sha }}
-      #   run: |
-      #     ls
-      #   # docker-compose up -d
-      #   # docker push file_submission_input:latest
-     
+  
