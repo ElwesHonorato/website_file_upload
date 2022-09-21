@@ -18,7 +18,6 @@ WORKDIR /app
 #### MOVE FILES FROM YOUR WORKING DIRECTORY [ACTUAL_FOLDER]/APP TO DOCKER DIRETORY [ROOT]/APP
 COPY . .
 
-RUN ls
 RUN pip install -r requirements.txt
 
 CMD gunicorn --bind 0.0.0.0:8000 wsgi:app
