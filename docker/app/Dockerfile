@@ -1,17 +1,17 @@
-# FROM python:3.9-slim
-FROM ubuntu
+FROM python:3.9-slim
+# FROM ubuntu
 
-#### LAYERS
-RUN apt-get update -y
+# #### LAYERS
+# RUN apt-get update -y
 
-RUN apt-get install python3-venv -y
+# RUN apt-get install python3-venv -y
 
-ENV VIRTUAL_ENV=/opt/venv
-RUN python3 -m venv $VIRTUAL_ENV
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+# ENV VIRTUAL_ENV=/opt/venv
+# RUN python3 -m venv $VIRTUAL_ENV
+# ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-#### EPORTS
-EXPOSE 8000
+# #### EPORTS
+# EXPOSE 8000
 
 #### MOVE FILES FROM YOUR WORKING DIRECTORY [ACTUAL_FOLDER]/APP TO DOCKER DIRETORY [ROOT]/APP
 WORKDIR /app
