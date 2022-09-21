@@ -46,6 +46,7 @@ jobs:
         #   ECR_REPOSITORY: your-ecr-repot
         #   IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker-compose up
+          ls
+          docker-compose up -d
           docker push file_submission_input:latest
      
