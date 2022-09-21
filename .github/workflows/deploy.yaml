@@ -38,9 +38,10 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
 
 
-
+      - uses: actions/checkout@v3
+      
       - name: Docker Compose Up
-        uses: actions/checkout@v3
+
         with:
           compose-file: ../docker/app/docker-compose.yml
         env:
