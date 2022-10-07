@@ -33,7 +33,8 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: fs000-images_repository
         IMAGE_TAG: latest
+      working-directory: ./docker/app
       run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./docker/app
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG 
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 #
