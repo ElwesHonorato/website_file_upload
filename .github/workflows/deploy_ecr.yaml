@@ -35,10 +35,10 @@ jobs:
         IMAGE_TAG: latest
       working-directory: ./docker/app
       run: |
-        docker-compose build 
-        ls
-        cd ..
-        ls
+        docker-compose build $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        docker images
+        docker ps
+        docker ps -a
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 # $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 #-t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG 
