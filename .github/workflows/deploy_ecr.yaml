@@ -39,6 +39,6 @@ jobs:
         docker images
         docker ps
         docker ps -a
-        docker push file_submission_input
+        docker push -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 # $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 #-t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG 
