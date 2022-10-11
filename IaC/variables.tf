@@ -4,12 +4,10 @@ variable "project" {
 }
 
 
-
 #### PROVIDER SPECIFICATIONS
 variable "region" {
   default = "us-east-2"
 }
-
 
 
 #### ENVIRONMENTS
