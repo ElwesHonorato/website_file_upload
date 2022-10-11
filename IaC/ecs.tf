@@ -42,10 +42,10 @@ resource "aws_ecs_task_definition" "cluster_web_page_task" {
 }
 
 
-resource "aws_ecs_service" "cluster_web_page_task" {
-  name            = "cluster_web_page_service"                             # Naming our first service
-  cluster         = "${aws_ecs_cluster.cluster_web_page.id}"               # Referencing our created Cluster
-  task_definition = "${aws_ecs_task_definition.cluster_web_page_task.arn}" # Referencing the task our service will spin up
-  launch_type     = "FARGATE"
-  desired_count   = 1 # Setting the number of containers we want deployed to 3
-}
+# resource "aws_ecs_service" "cluster_web_page_task" {
+#   name            = "cluster_web_page_service"                             # Naming our first service
+#   cluster         = "${aws_ecs_cluster.cluster_web_page.id}"               # Referencing our created Cluster
+#   task_definition = "${aws_ecs_task_definition.cluster_web_page_task.arn}" # Referencing the task our service will spin up
+#   launch_type     = "FARGATE"
+#   desired_count   = 1 # Setting the number of containers we want deployed to 3
+# }
