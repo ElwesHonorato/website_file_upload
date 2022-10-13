@@ -49,6 +49,13 @@ resource "aws_ecs_service" "cluster_web_page_task" {
   launch_type     = "FARGATE"
   desired_count   = 1 # Setting the number of containers we want deployed to 3
 
+
+  load_balancer {
+    target_group_arn = "${aws_lb_target_group.target_group.arn}" # Referencing our target group
+    container_name   = "${aws_ecs_task_definition.cluster_web_page_task.family}"
+    container_port   = 3000 # Specifying the container port
+  }
+
 # As we are using Fargate, our tasks need to specify that the network mode is awsvpc. As a result, we need to extend our service to include a network configuration. 
 # You may have not known it yet, but our cluster was automatically deployed into your account’s default VPC. 
 # However, for a service, this needs to be explicitly stated, even if we wish to continue using the default VPC and subnets. 

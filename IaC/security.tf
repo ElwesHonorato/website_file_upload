@@ -20,37 +20,20 @@ resource "aws_default_subnet" "default_subnet_c" {
   availability_zone = "us-east-2c"
 }
 
-# resource "aws_security_group" "permitir_ssh_http" {
-#   name        = "permitir_ssh"
-#   description = "Permite SSH e HTTP na instancia EC2"
-#   vpc_id      = var.tcb_blog_vpc_id
+# Creating a security group for the load balancer:
+resource "aws_security_group" "load_balancer_security_group" {
+  name        = "${var.project}-alb"
+  ingress {
+    from_port   = 80 # Allowing traffic in from port 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] # Allowing traffic in from all sources
+  }
 
-#   ingress {
-#     description = "SSH to EC2"
-#     from_port   = 22
-#     to_port     = 22
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-
-#   ingress {
-#     description = "HTTP to EC2"
-#     from_port   = 80
-#     to_port     = 80
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-
-
-
-#   egress {
-#     from_port   = 0
-#     to_port     = 0
-#     protocol    = "-1"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-
-#   tags = {
-#     Name = "permitir_ssh_e_http"
-#   }
-# }
+  egress {
+    from_port   = 0 # Allowing any incoming port
+    to_port     = 0 # Allowing any outgoing port
+    protocol    = "-1" # Allowing any outgoing protocol 
+    cidr_blocks = ["0.0.0.0/0"] # Allowing traffic out to all IP addresses
+  }
+}
