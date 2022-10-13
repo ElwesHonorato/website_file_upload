@@ -10,7 +10,9 @@ FROM python:3.9-slim
 # RUN python3 -m venv $VIRTUAL_ENV
 # ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-# #### EPORTS
+# #### PORTS
+# Make port 3000 available to the world outside this container
+EXPOSE 8000 
 # EXPOSE 8000
 
 WORKDIR /app
