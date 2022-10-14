@@ -24,26 +24,62 @@ resource "aws_iam_role_policy_attachment" "ecsTaskExecutionRole_policy" {
 }
 
 
-# resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
-#   bucket = aws_s3_bucket.example.id
-#   policy = data.aws_iam_policy_document.allow_access_from_another_account.json
-# }
 
-# data "aws_iam_policy_document" "allow_access_from_another_account" {
-#   statement {
-#     principals {
-#       type        = "AWS"
-#       identifiers = ["123456789012"]
-#     }
 
-#     actions = [
-#       "s3:GetObject",
-#       "s3:ListBucket",
-#     ]
 
-#     resources = [
-#       aws_s3_bucket.example.arn,
-#       "${aws_s3_bucket.example.arn}/*",
-#     ]
-#   }
-# }
+
+########################## S3 ##############################################################################
+data "aws_iam_policy_document" "bronze_bucket_access_document" {
+  statement {
+    sid = "allowS3"
+    effect = "Allow"
+    actions = [
+      "s3:*"
+    ]
+    resources = [
+      "*"
+    ]
+  }
+  # statement {
+  #   sid = "allowListBucket"
+  #   actions = [
+  #     "s3:ListBucket",
+  #   ]
+  #   resources = [
+  #     "arn:aws:s3:::test-ndgegy4364gdu-source-bucket",
+  #     "arn:aws:s3:::test-ndgegy4364gdu-source-bucket/images/*"
+  #   ]
+  }
+
+
+resource "aws_iam_policy" "bronze_bucket_access_policy" {
+  name        = "bronze_bucket_access_policy"
+  description = "Access to Bronze Bucket - Project File Submission - FS00"
+  path        = "/"
+
+  policy = data.aws_iam_policy_document.bronze_bucket_access_document.json
+}
+
+resource "aws_iam_role" "bronze_bucket_access_role" {
+  name        = "S3_automation_move_objects"
+  description = "Access to Bronze Bucket - Project File Submission - FS00"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Sid    = ""
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+      },
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "bronze_bucket_access_policy_attachment" {
+  role       = aws_iam_role.bronze_bucket_access_role.name
+  policy_arn = aws_iam_policy.bronze_bucket_access_policy.arn
+}
