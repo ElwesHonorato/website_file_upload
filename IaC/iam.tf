@@ -61,7 +61,7 @@ resource "aws_iam_policy" "bronze_bucket_access_policy" {
 }
 
 resource "aws_iam_role" "bronze_bucket_access_role" {
-  name        = "S3_automation_move_objects"
+  name        = "bronze_bucket_access_role"
   description = "Access to Bronze Bucket - Project File Submission - FS00"
 
   assume_role_policy = jsonencode({
