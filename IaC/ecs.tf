@@ -39,6 +39,7 @@ resource "aws_ecs_task_definition" "cluster_web_page_task" {
   memory                   = 512         # Specifying the memory our container requires
   cpu                      = 256         # Specifying the CPU our container requires
   execution_role_arn       = "${aws_iam_role.ecsTaskExecutionRole.arn}"
+  task_role_arn            = "${aws_iam_role.bronze_bucket_access_role.arn}"
 }
 
 
@@ -48,7 +49,7 @@ resource "aws_ecs_service" "cluster_web_page_task" {
   task_definition = "${aws_ecs_task_definition.cluster_web_page_task.arn}" # Referencing the task our service will spin up
   launch_type     = "FARGATE"
   desired_count   = 1 # Setting the number of containers we want deployed to 3
-  iam_role        = aws_iam_role.bronze_bucket_access_role.arn
+#   iam_role        = aws_iam_role.bronze_bucket_access_role.arn
 
   load_balancer {
     target_group_arn = "${aws_lb_target_group.target_group.arn}" # Referencing our target group
