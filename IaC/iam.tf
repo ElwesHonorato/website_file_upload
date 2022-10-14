@@ -24,26 +24,26 @@ resource "aws_iam_role_policy_attachment" "ecsTaskExecutionRole_policy" {
 }
 
 
-resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
-  bucket = aws_s3_bucket.example.id
-  policy = data.aws_iam_policy_document.allow_access_from_another_account.json
-}
+# resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
+#   bucket = aws_s3_bucket.example.id
+#   policy = data.aws_iam_policy_document.allow_access_from_another_account.json
+# }
 
-data "aws_iam_policy_document" "allow_access_from_another_account" {
-  statement {
-    principals {
-      type        = "AWS"
-      identifiers = ["123456789012"]
-    }
+# data "aws_iam_policy_document" "allow_access_from_another_account" {
+#   statement {
+#     principals {
+#       type        = "AWS"
+#       identifiers = ["123456789012"]
+#     }
 
-    actions = [
-      "s3:GetObject",
-      "s3:ListBucket",
-    ]
+#     actions = [
+#       "s3:GetObject",
+#       "s3:ListBucket",
+#     ]
 
-    resources = [
-      aws_s3_bucket.example.arn,
-      "${aws_s3_bucket.example.arn}/*",
-    ]
-  }
-}
+#     resources = [
+#       aws_s3_bucket.example.arn,
+#       "${aws_s3_bucket.example.arn}/*",
+#     ]
+#   }
+# }
