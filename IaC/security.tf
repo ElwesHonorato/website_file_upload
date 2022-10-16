@@ -24,9 +24,9 @@ resource "aws_default_subnet" "default_subnet_c" {
 resource "aws_security_group" "load_balancer_security_group" {
   name        = "${var.project}-alb"
   ingress {
-    from_port   = 80 # Allowing traffic in from port 80
-    to_port     = 80
-    protocol    = "tcp"
+    from_port   = 0 # Allowing any incoming port
+    to_port     = 0 # Allowing any outgoing port
+    protocol    = "-1" # Allowing any outgoing protocol 
     cidr_blocks = ["0.0.0.0/0"] # Allowing traffic in from all sources
   }
 
@@ -46,7 +46,7 @@ resource "aws_security_group" "web_page_service_security_group" {
     to_port   = 0
     protocol  = "-1"
     # Only allowing traffic in from the load balancer security group
-    security_groups = ["${aws_security_group.load_balancer_security_group.id}"]
+    # security_groups = ["${aws_security_group.load_balancer_security_group.id}"]
   }
 
   egress {
