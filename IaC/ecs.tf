@@ -36,7 +36,7 @@ resource "aws_ecs_task_definition" "cluster_web_page_task" {
   memory                   = 512         # Specifying the memory our container requires
   cpu                      = 256         # Specifying the CPU our container requires
   execution_role_arn       = "${aws_iam_role.ecsTaskExecutionRole.arn}"
-#   task_role_arn            = "${aws_iam_role.bronze_bucket_access_role.arn}"
+  task_role_arn            = "${aws_iam_role.bronze_bucket_access_role.arn}"
 }
 
 
