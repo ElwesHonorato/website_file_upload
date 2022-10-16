@@ -12,7 +12,7 @@ resource "aws_alb" "application_load_balancer" {
 
 resource "aws_lb_target_group" "target_group" {
   name        = "${var.project}-alb-target-group"
-  port        = 8000
+  port        = 80
   protocol    = "HTTP"
   target_type = "ip"
   vpc_id      = "${aws_default_vpc.default_vpc.id}" # Referencing the default VPC
@@ -24,7 +24,7 @@ resource "aws_lb_target_group" "target_group" {
 
 resource "aws_lb_listener" "listener" {
   load_balancer_arn = "${aws_alb.application_load_balancer.arn}" # Referencing our load balancer
-  port              = "8000"
+  port              = "80"
   protocol          = "HTTP"
   default_action {
     type             = "forward"
