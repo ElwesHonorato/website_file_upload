@@ -18,7 +18,7 @@ resource "aws_ecs_task_definition" "cluster_web_page_task" {
   [
     {
       "name": "${var.project}-cluster_web_page_task",
-      "image": "${aws_ecr_repository.images_repository.repository_url}",
+      "image": "${aws_ecr_repository.images_repository.repository_url}:latest",
       "essential": true,
       "portMappings": [
         {
