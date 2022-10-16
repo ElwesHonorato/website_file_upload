@@ -72,7 +72,7 @@ resource "aws_iam_role" "bronze_bucket_access_role" {
         Effect = "Allow"
         Sid    = ""
         Principal = {
-          Service = "ec2.amazonaws.com"
+          Service = "ecs-tasks.amazonaws.com"
         }
       },
     ]
