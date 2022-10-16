@@ -7,7 +7,7 @@ from werkzeug.utils import secure_filename
 
 
 s3 = boto3.client('s3')
-BUCKET_NAME='mbaprojectbronze'
+BUCKET_NAME='fs000-dev-env-bucket-bronze'
 
 
 @app.route('/')  
