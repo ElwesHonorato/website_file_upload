@@ -83,3 +83,51 @@ resource "aws_iam_role_policy_attachment" "bronze_bucket_access_policy_attachmen
   role       = aws_iam_role.bronze_bucket_access_role.name
   policy_arn = aws_iam_policy.bronze_bucket_access_policy.arn
 }
+
+
+########################## S3 - LAMBDA ##############################################################################
+data "aws_iam_policy_document" "lambda_bronze_silver_bucket_access_document" {
+  statement {
+    sid = "allowS3"
+    effect = "Allow"
+    actions = [
+      "s3:*"
+      ] 
+    resources = [
+      "*"
+      ]
+    }
+  }
+
+
+resource "aws_iam_policy" "lambda_bronze_silver_bucket_access_policy" {
+  name        = "lambda_bronze_silver_bucket_access_policy"
+  description = "Move files from Bronze to Silver Bucket - Project File Submission - FS00"
+  path        = "/"
+
+  policy = data.aws_iam_policy_document.bronze_bucket_access_document.json
+}
+
+resource "aws_iam_role" "lambda_bronze_silver_bucket_access_role" {
+  name        = "lambda_bronze_silver_bucket_access_role"
+  description = "Move files from Bronze to Silver Bucket - Project File Submission - FS00"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Sid    = ""
+        Principal = {
+          Service = "lambda.amazonaws.com"
+        }
+      },
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "lambda_bronze_silver_bucket_access_policy_attachment" {
+  role       = aws_iam_role.lambda_bronze_silver_bucket_access_role.name
+  policy_arn = aws_iam_policy.lambda_bronze_silver_bucket_access_policy.arn
+}
