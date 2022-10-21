@@ -10,3 +10,5 @@ cd ${WRKDIR}/${LYR_PDS_DIR}/
 ${WRKDIR}/${LYR_PDS_DIR}/build_layer.sh
 zip -r ${WRKDIR}/packages/Python3-pandas.zip .
 rm -rf ${WRKDIR}/${LYR_PDS_DIR}/python/
+
+sleep 50
