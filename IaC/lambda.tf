@@ -27,7 +27,7 @@
 
 data "archive_file" "python_lambda_package" {  
   type = "zip"  
-  source_file = "./IaC/lambda/lambda_function.py" 
+  source_file = "./lambda/lambda_function.py" 
   output_path = "python_lambda_package.zip"
 }
 resource "aws_lambda_function" "lambda_function_bucket_movements" {
