@@ -17,6 +17,33 @@ resource "aws_s3_object" "dev_bucket_bronze_insource" {
   content_type = "application/x-directory"
 }
 
+# Create empty Folder SCHEMAS
+resource "aws_s3_object" "dev_bucket_bronze_insource" {
+  bucket = aws_s3_bucket.dev_bucket_bronze.id
+  key = "SCHEMAS_SOURCE/"
+  content_type = "application/x-directory"
+}
+
+# Create empty Folder WRONG_FORMAT
+resource "aws_s3_object" "dev_bucket_bronze_insource" {
+  bucket = aws_s3_bucket.dev_bucket_bronze.id
+  key = "WRONG_FORMAT/"
+  content_type = "application/x-directory"
+}
+
+# Create empty Folder SCHEMA_LESS
+resource "aws_s3_object" "dev_bucket_bronze_insource" {
+  bucket = aws_s3_bucket.dev_bucket_bronze.id
+  key = "SCHEMA_LESS/"
+  content_type = "application/x-directory"
+}
+
+# Create empty Folder SCHEMA_LESS
+resource "aws_s3_object" "dev_bucket_bronze_insource" {
+  bucket = aws_s3_bucket.dev_bucket_bronze.id
+  key = "MOVED/"
+  content_type = "application/x-directory"
+}
 
 ############################################################################################################################
 #### Silver Bucket #########################################################################################################
