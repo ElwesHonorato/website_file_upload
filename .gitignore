@@ -1,4 +1,3 @@
 *.exe
 *.csv
-*docker/Dockerfile
-*IaC/lambda
+*IaC\lambda
