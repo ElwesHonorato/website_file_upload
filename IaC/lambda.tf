@@ -34,7 +34,7 @@ resource "aws_lambda_function" "lambda_function_bucket_movements" {
         function_name = "lambda_function_bucket_movements"
         filename      = "python_lambda_package.zip"
         source_code_hash = data.archive_file.python_lambda_package.output_base64sha256
-        role          = "${aws_iam_role.lambda_bronze_silver_bucket_access_policy_attachment.arn}"
+        role          = "${aws_iam_role.lambda_bronze_silver_bucket_access_role.arn}"
         runtime       = "python3.8"
         handler       = "lambda_function.lambda_handler"
         timeout       = 10
