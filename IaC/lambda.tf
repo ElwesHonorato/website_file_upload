@@ -22,3 +22,20 @@
 #   layers           = ["${aws_lambda_layer_version.python38-pandas-layer.arn}"]
 # }
 
+
+
+
+data "archive_file" "python_lambda_package" {  
+  type = "zip"  
+  source_file = "/lambda/lambda_function.py" 
+  output_path = "python_lambda_package.zip"
+
+resource "aws_lambda_function" "test_lambda_function" {
+        function_name = "lambda_function_bucket_movements"
+        filename      = "python_lambda_package.zip"
+        source_code_hash = data.archive_file.python_lambda_package.output_base64sha256
+        role          = aws_iam_role.lambda_role.arn
+        runtime       = "python3.6"
+        handler       = "lambda_function.lambda_handler"
+        timeout       = 10
+}
