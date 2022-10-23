@@ -1,0 +1,21 @@
+name: Schemas_Source
+
+on:
+  workflow_run:
+    workflows: [Deploy IaC]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: qoqa/action-s3-cp@v1.1
+        env:
+          AWS_S3_BUCKET: 'fs000-dev-env-bucket-bronze'
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_TERRAFORM }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_TERRAFORM }}
+          AWS_REGION: 'us-east-2'
+          AWS_S3_PATH: '/SCHEMAS_SOURCE/schemas_source.csv'
+          FILE: './IaC/schemas_source/schemas_source.csv'
