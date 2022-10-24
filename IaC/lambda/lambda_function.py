@@ -15,31 +15,6 @@ def lambda_handler (event, context):
  print(obj_destin_bucket)
  print("==========================================================================")
  
- # ########################################################################################################################################################################################################
- # #### Get list of available schemas ###################################################################################################################################################################
- # schema_source = {
- #  'Bucket': 'schema_source_bucket',
- #  'Key'   : 'schema_source_key'
- #  }
- # schema_source['Bucket'] = source_bucket
- # # schema_source['Key']    = 'SCHEMAS_SOURCE/schemas_source.csv'
- # schema_source_object_list = obj_source_bucket.objects.filter(Prefix='SCHEMAS_SOURCE/',Delimiter='/')
- # schema_source_object_list = list(schema_source_object_list)
- # schema_source_object_list = schema_source_object_list[1:]
- 
- # for obj in schema_source_object_list:
- #  s3_object_schema_source = s3_resource.Object(schema_source, obj.key)
- #  data = s3_object_schema_source.get()['Body'].read().decode('utf-8').splitlines()
- 
- # # schema_list = []
- # # for line in data:
- # #  words = line.split(',')
- # #  schema_list.append(words)
- # #  schema_list     = schema_list[0]
- # #  schema_list[-1] = schema_list[-1].replace('\n','')
- # #  schema_list     = [x.lower() for x in schema_list]
- # #  schema_list     = sorted(results)
- # # print(schema_list)
  schema_list = [
   ['account_id','name','value']
   ]
@@ -87,9 +62,6 @@ def lambda_handler (event, context):
       schema_valid = True
       break
     if schema_valid == True:
-     print('foi') 
-     print(schema)
-     print(results)
      ### Copy file to Silver Bucket
      destin_key = source_key # Save the file in the same structure
      obj_destin_bucket.copy(copy_source, destin_key) # Copy file from Bronze Bucket to Silver Bucket
@@ -97,21 +69,25 @@ def lambda_handler (event, context):
      file_name = source_key.split('/')[1] # Extract the name without the "INSOURCE" preffix
      moved_destin_key = 'MOVED/' + file_name # Create key with "MOVED" preffix
      obj_source_bucket.copy(copy_source, moved_destin_key) # Copy file from "INSOURCE" to "MOVED" in Bucket Bronze
-    
+     s3_resource.Object(source_bucket, source_key).delete()
+     
     else:
      ### Copy file to SCHEMA_LESS/ in Bronze Bucket
      file_name = source_key.split('/')[1] # Extract the name without the "INSOURCE" preffix
      moved_destin_key = 'SCHEMA_LESS/' + file_name # Create key with "SCHEMA_LESS" preffix
      obj_source_bucket.copy(copy_source, moved_destin_key) # Copy file from "INSOURCE" to "SCHEMA_LESS" in Bucket Bronze
-
+     s3_resource.Object(source_bucket, source_key).delete()
+     
    else:
     ### Copy file to WRONG_FORMAT/ in Bronze Bucket
     file_name = source_key.split('/')[1] # Extract the name without the "INSOURCE" preffix
     moved_destin_key = 'WRONG_FORMAT/' + file_name # Create key with "WRONG_FORMAT" preffix
     obj_source_bucket.copy(copy_source, moved_destin_key) # Copy file from "INSOURCE" to "WRONG_FORMAT" in Bucket Bronze
-
+    s3_resource.Object(source_bucket, source_key).delete()
+    
   except:
    ### Copy file to WRONG_FORMAT/ in Bronze Bucket
    file_name = source_key.split('/')[1] # Extract the name without the "INSOURCE" preffix
    moved_destin_key = 'WRONG_FORMAT/' + file_name # Create key with "WRONG_FORMAT" preffix
    obj_source_bucket.copy(copy_source, moved_destin_key) # Copy file from "INSOURCE" to "WRONG_FORMAT" in Bucket Bronze
+   s3_resource.Object(source_bucket, source_key).delete()
