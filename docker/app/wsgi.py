@@ -23,11 +23,13 @@ def upload():
         s3.upload_file(
             Bucket = BUCKET_NAME,
             Filename= 'INSOURCE/' + filename,
-            Key = filename
+            Key = 'INSOURCE/' + filename
         )
         msg = "Upload Done ! "
 
     return render_template("home.html",msg =msg)
+
+
 
 
 if __name__ == "__main__":
