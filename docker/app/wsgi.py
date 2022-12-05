@@ -17,12 +17,12 @@ def home():
 @app.route('/upload',methods=['post'])
 def upload():
     if request.method == 'POST':
-        img = request.files['file']
-        filename = secure_filename(img.filename)
-        img.save(filename)
+        uploaded_file = request.files['file']
+        filename = secure_filename(uploaded_file.filename)
+        uploaded_file.save(filename)
         s3.upload_file(
             Bucket = BUCKET_NAME,
-            Filename=filename,
+            Filename= 'INSOURCE/' + filename,
             Key = filename
         )
         msg = "Upload Done ! "
