@@ -1,11 +1,16 @@
-I needed a website to upload files flat files and now I present the path I took to achieve it.
+Building a File Upload Website — A Journey in Data Engineering
+At first glance, a website to upload flat files may seem like a simple project. However, for many data engineering students, it can be challenging to find complete end-to-end projects that showcase how different technologies are interconnected. In this post, I’ll take you through the journey I took to build such a website, which can serve as a helpful quick start for understanding how these technologies work together.
 
-At first glance, this simple title may look like a trivial project to technology outsiders and also trivial to Jedi´s technology but I believe that for a big part of data engineering students to see a complete project end to end it´s not so common to find and can be helpful quickstart to better understand how these technologies are interconnected.
-I used Terraform, CI/CD, Docker, GitHub, Flask, and AWS solutions like AWS Bucket, Auto Scaling Group, ECR, Lambda Function, ECS Cluster and Amazon Event Bridge in this project. 
-My intention with this project is to give you a glance at how all of them can work together and who does what. Later on, I may write about the specificities and good practices of each part of this project but for now, I´ll  stick to the working of the solution at a high level and share the GitHub repository.
-As you´ll find below this is not a finished project, there are a few more features that I plan to add, but after a reflection, I may never finish it due to new ideas and technologies that I may wanna apply. So, I´m writing this post, the first of a series, as an extended part of the documentation and learning I´m obtaining in this journey.
-And to the ones who are afraid of cloud costs and are willing to replicate this solution, I can assure you that I didn´t spend more than 5 dollars with this.
+My goal with this project is to provide insight into how different technologies can be integrated to create a complete solution. While I plan to delve into the specificities and best practices of each aspect of the project later, for now, I will focus on the high-level solution.
 
-A website to upload files, but why?
-Ok, we are talking about some cool tools to work with data engineering but imagine, some of you won´t have much trouble with that, that you have an Excel file where the business team keeps track of hundreds of rows that must be often manually updated in the CRM.
-With that said, how could we develop a solution that would enable the business team to mass upload their updates that later on would be processed by the data engineering team to the CRM? The solution also must be hefty enough to keep track of the submissions, check data schema before moving the file to the processing stage, and also be scalable and cost-effective.
+Although this project is still a work in progress and has room for improvement, I consider it a live project. I plan to implement new ideas and technologies and write about my learning experiences in future posts.
+
+For those concerned about cloud costs, I can assure you that the cost of this project was less than 5 dollars.
+
+Why a File Upload Website?
+Ok, we usually focus on cool tools to work with data engineering but imagine, some of you won´t have much trouble with that, that you have an Excel file where the business team keeps track of hundreds of rows that must be often manually updated in a CRM.
+
+With that said, how could we develop a solution that would enable the business team to mass upload their updates that later on would be processed by the data engineering team to the CRM? The solution also must be hefty enough to keep track of the submissions, check data column schema before moving the file to the processing stage, and also be scalable and cost-effective.
+
+If you want to know more about it, check out my Medium post.
+https://medium.com/@elweshonorato/i-needed-a-website-to-upload-flat-files-and-now-i-present-the-path-i-took-to-achieve-it-8808f015c92d
